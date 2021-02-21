@@ -14,7 +14,8 @@ if ! command -v python3 >/dev/null; then
     brew install python3
     echo 'export PATH="/usr/local/opt/python/libexec/bin:$PATH"' >>~/.zshrc
 else
-    echo "Python 3 Installed"
+    pip install --upgrade pip
+    echo "Python 3 Installed and pip upgraded"
 fi
 
 #Install AWS CLI
@@ -55,9 +56,9 @@ else
 fi
 
 # Install git code commit helper
-if ! command -v pip list | grep git-remote-codecommit >/dev/null; then
+if ! command pip list | grep git-remote-codecommit >/dev/null; then
     echo "Installing Code commit helper..."
-    # pip install git-remote-codecommit
+    pip install git-remote-codecommit
     echo "Code Commit Helper Installed!"
 else
     echo "Code Commit Helper Installed"
@@ -71,3 +72,13 @@ if ! command -v rustc >/dev/null; then
 else
     echo "RustUp Installed"
 fi
+
+# Install Git Flow
+if ! command git flow version >/dev/null; then
+    echo "Installing Git Flow..."
+    brew install git-flow
+    echo "Git Flow Installed"
+else
+    echo "Git Flow Installed"
+fi
+
