@@ -14,8 +14,7 @@ if ! command -v python3 >/dev/null; then
     brew install python3
     echo 'export PATH="/usr/local/opt/python/libexec/bin:$PATH"' >>~/.zshrc
 else
-    pip install --upgrade pip
-    echo "Python 3 Installed and pip upgraded"
+    echo "Python 3 Installed"
 fi
 
 #Install AWS CLI
@@ -82,3 +81,11 @@ else
     echo "Git Flow Installed"
 fi
 
+# Install AWS CDK
+if ! command -v cdk >/dev/null; then
+    echo "Installing CDK"
+    brew install aws-cdk
+    echo "CDK Installation completed"
+else
+    echo "CDK Installed"
+fi
