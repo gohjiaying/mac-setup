@@ -3,6 +3,11 @@
 #Install Homebrew
 if ! command -v brew >/dev/null; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    echo 'export PATH="/opt/homebrew/bin:$PATH"' >>~/.zshrc
+    source ~/.zshrc
+    # Homebrew gathers anonymous aggregated user behavior analytics and reports these to Google Analytics. It is recommended that you choose to opt out
+    # See https://github.com/Homebrew/brew/blob/master/docs/Analytics.md for the detail.
+    brew analytics off 
 fi
 
 # Make sure we’re using the latest Homebrew.
@@ -13,6 +18,7 @@ if ! command -v python3 >/dev/null; then
     echo "Installing Python 3..."
     brew install python3
     echo 'export PATH="/usr/local/opt/python/libexec/bin:$PATH"' >>~/.zshrc
+    source ~/.zshrc
 else
     echo "Python 3 Installed"
 fi
@@ -37,28 +43,28 @@ fi
 # Install awsp
 if ! command npm list -g | grep awsp >/dev/null; then
     echo "Installing AWSP..."
-    npm install -g awsp
-    echo 'alias awsp="source _awsp"' >>~/.zshrc
+    sudo npm install -g awsp
+    #echo 'alias awsp="source _awsp"' >>~/.zshrc
 else
     echo "AWSP Installed"
 fi
 
 
 # Install pip
-if ! command -v pip >/dev/null; then
+if ! command -v pip3 >/dev/null; then
     echo "Installing pip.."
     curl -O https://bootstrap.pypa.io/get-pip.py
     python3 get-pip.py --user
-    echo "Pip installed"
+    echo "Pip3 installed"
 else
-    echo "Pip Installed"
+    echo "Pip3 Installed"
 fi
 
 # Install git code commit helper
-if ! command pip list | grep git-remote-codecommit >/dev/null; then
+if ! command pip3 list | grep git-remote-codecommit >/dev/null; then
     echo "Installing Code commit helper..."
-    pip install git-remote-codecommit
-    echo "Code Commit Helper Installed!"
+    pip3 install git-remote-codecommit
+    echo "Code Commit Helper Installed"
 else
     echo "Code Commit Helper Installed"
 fi
@@ -72,15 +78,6 @@ else
     echo "RustUp Installed"
 fi
 
-# Install Git Flow
-if ! command git flow version >/dev/null; then
-    echo "Installing Git Flow..."
-    brew install git-flow
-    echo "Git Flow Installed"
-else
-    echo "Git Flow Installed"
-fi
-
 # Install AWS CDK
 if ! command -v cdk >/dev/null; then
     echo "Installing CDK"
@@ -88,4 +85,28 @@ if ! command -v cdk >/dev/null; then
     echo "CDK Installation completed"
 else
     echo "CDK Installed"
+fi
+
+# Install Boto3
+if ! command pip3 list | grep boto3 >/dev/null; then
+    echo "Installing Boto3..."
+    pip3 install boto3
+else
+    echo "Boto3 Installed"
+fi
+
+# Install jq
+if ! command -v jq >/dev/null; then
+    echo "Installing Jq..."
+    brew install jq
+else
+    echo "Jq Installed"
+fi
+
+# Install eksctl
+if ! command -v eksctl >/dev/null; then
+    echo "Installing eksctl..."
+    brew install weaveworks/tap/eksctl
+else
+    echo "eks ctl installed"
 fi
