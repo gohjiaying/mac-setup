@@ -1,0 +1,17 @@
+export PATH="/opt/homebrew/bin:$PATH"
+alias awsp="source _awsp"
+alias virtualenv="python3 -m venv venv"
+function awslogin(){
+  awsp;
+  aws sso login
+}
+
+function decode(){
+  aws sts decode-authorization-message --encoded-message $1| jq '.DecodedMessage | fromjson | .'
+}
+
+# Git checkout
+# Eg. gc branch-name
+function gc(){
+ git checkout "$1"
+}

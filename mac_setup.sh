@@ -110,3 +110,12 @@ if ! command -v eksctl >/dev/null; then
 else
     echo "eks ctl installed"
 fi
+
+# Install terraform
+if ! command -v terraform >/dev/null; then
+    echo "Installing terraform..."
+    brew install hashicorp/tap/terraform
+    terraform -install-autocomplete
+else
+    echo "terraofrm installed"
+fi
