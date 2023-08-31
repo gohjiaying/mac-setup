@@ -117,5 +117,5 @@ if ! command -v terraform >/dev/null; then
     brew install hashicorp/tap/terraform
     terraform -install-autocomplete
 else
-    echo "terraofrm installed"
+    echo "terraform installed"
 fi
