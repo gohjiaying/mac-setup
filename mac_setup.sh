@@ -23,6 +23,14 @@ else
     echo "Python 3 Installed"
 fi
 
+# Install virtualenv
+if ! command -v virtualenv >/dev/null; then
+    echo "Installing virtualenv..."
+    brew install virtualenv
+else
+    echo "virtualenv"
+fi
+
 #Install AWS CLI
 if ! command -v aws >/dev/null; then
     echo "Installing AWS ClI..."
