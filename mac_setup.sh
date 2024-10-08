@@ -123,10 +123,11 @@ fi
 # Install terraform
 if ! command -v terraform >/dev/null; then
     echo "Installing terraform..."
+    brew tap hashicorp/tap
     brew install hashicorp/tap/terraform
     terraform -install-autocomplete
 else
-    echo "terraform installed"
+    echo "Terraform Installed"
 fi
 
 # Install Session Manager Plugin
