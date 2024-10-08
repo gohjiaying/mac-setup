@@ -52,7 +52,8 @@ fi
 if ! command npm list -g | grep awsp >/dev/null; then
     echo "Installing AWSP..."
     sudo npm install -g awsp
-    #echo 'alias awsp="source _awsp"' >>~/.zshrc
+    brew install aws2-wrap
+    echo 'alias awsp="source _awsp"' >>~/.zshrc
 else
     echo "AWSP Installed"
 fi
