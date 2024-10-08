@@ -128,3 +128,13 @@ if ! command -v terraform >/dev/null; then
 else
     echo "terraform installed"
 fi
+
+# Install Session Manager Plugin
+if ! command -v session-manager-plugin >/dev/null; then
+    echo "Installing session manager"
+    curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/mac_arm64/sessionmanager-bundle.zip" -o "sessionmanager-bundle.zip"
+    unzip sessionmanager-bundle.zip
+    sudo ./sessionmanager-bundle/install -i /usr/local/sessionmanagerplugin -b /usr/local/bin/session-manager-plugin
+else
+    echo "Session Manager Plugin Installed"
+fi
